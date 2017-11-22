@@ -31,6 +31,7 @@ namespace TodoConsole
                    new CommandType {Id=10,Name="allactive" },
                    new CommandType {Id=11,Name="listactive" },
                    new CommandType {Id=12,Name="listcomplete" },
+                   new CommandType {Id=13,Name="help" },
                 };
             var command = Console.ReadLine();
             int commandtype = 0;
@@ -214,6 +215,20 @@ namespace TodoConsole
 
                 // avaliablecommands
                 //ProcessCommand(command, "avaliablecommands", () =>
+                ProcessCommand(commandtype, 13, () =>
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("avaliable commands");
+                    Console.WriteLine("------------------------------");
+
+                    foreach (var type in comandtypes.OrderBy(x=>x.Name))
+                    {
+                        Console.WriteLine(type);
+                    }
+                    Console.WriteLine();
+
+                });
+
                 ProcessCommand(commandtype, 0, () =>
                 {
                     Console.WriteLine();
@@ -222,7 +237,7 @@ namespace TodoConsole
                     Console.WriteLine("avaliable commands");
                     Console.WriteLine("------------------------------");
 
-                    foreach (var type in comandtypes)
+                    foreach (var type in comandtypes.OrderBy(x => x.Name))
                     {
                         Console.WriteLine(type);
                     }
