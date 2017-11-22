@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllActiveCommandProcessor.cs" />
-    <Compile Include="AllCompleteCommandProcessor.cs" />
+    <Compile Include="CommandProcessors\AllActiveCommandProcessor.cs" />
+    <Compile Include="CommandProcessors\AllCompleteCommandProcessor.cs" />
     <Compile Include="CommandProcessors\ActiveCommandProcessor.cs" />
     <Compile Include="CommandProcessors\CommandProcessor.cs" />
     <Compile Include="CommandProcessors\CreateCommandProcessor.cs" />
