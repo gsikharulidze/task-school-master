@@ -93,6 +93,19 @@ namespace TodoInFileStorage
             task.Completed = false;
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
+        public static void DeleceComplete()
+        {
+            var tasks = List().ToList();
+            var count = tasks.Where(x => x.Completed == true).Count();
+            if (count == 0)
+            {
+                Console.WriteLine("Complete task not found");
+                return;
+            }
+            tasks.RemoveAll(x => x.Completed == true);
+            Console.WriteLine("Delete {0} items", count);
+            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
 
+        }
     }
 }

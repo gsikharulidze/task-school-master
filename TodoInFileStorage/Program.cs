@@ -13,13 +13,15 @@ namespace TodoInFileStorage
             { "rename", new RenameCommandProcessor() },
             { "complete", new CompleteCommandProcessor() },
             { "active", new ActiveCommandProcessor() },
-            //new CommandType {Id=8,Name="deletecompleted" },
-            //       new CommandType {Id=9,Name="allcomplete" },
-            //       new CommandType {Id=10,Name="allactive" },
-            //       new CommandType {Id=11,Name="listactive" },
-            //       new CommandType {Id=12,Name="listcomplete" },
-            //       new CommandType {Id=13,Name="help" },
+            { "deletecompleted", new  DeleteCompletedCommandProcessor() },
+            { "allcomplete", new AllCompleteCommandProcessor() },
+            { "allactive", new AllActiveCommandProcessor() },
+            { "listactive", new ListActiveCommandProcessor() },
+            { "listcomplete", new ListCompleteCommandProcessor() },
+            { "help", new HelpCommandProcessor() },
+
         };
+
 
         static void Main(string[] args)
         {

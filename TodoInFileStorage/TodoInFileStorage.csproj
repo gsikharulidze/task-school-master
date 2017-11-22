@@ -45,12 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllActiveCommandProcessor.cs" />
+    <Compile Include="AllCompleteCommandProcessor.cs" />
     <Compile Include="CommandProcessors\ActiveCommandProcessor.cs" />
     <Compile Include="CommandProcessors\CommandProcessor.cs" />
     <Compile Include="CommandProcessors\CreateCommandProcessor.cs" />
     <Compile Include="CommandProcessors\DeleteCommandProcessor.cs" />
     <Compile Include="CommandProcessors\ListCommandProcessor.cs" />
     <Compile Include="CommandProcessors\CompleteCommandProcessor.cs" />
+    <Compile Include="CommandProcessors\DeleteCompletedCommandProcessor.cs" />
+    <Compile Include="HelpCommandProcessor.cs" />
+    <Compile Include="ListActiveCommandProcessor.cs" />
+    <Compile Include="ListCompleteCommandProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandProcessors\RenameCommandProcessor.cs" />
