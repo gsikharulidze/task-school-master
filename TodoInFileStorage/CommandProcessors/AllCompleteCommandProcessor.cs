@@ -4,7 +4,7 @@
     {
         public override void Process()
         {
-            //throw new System.NotImplementedException();
+            Tasks.AllComplete();
         }
     }
 }

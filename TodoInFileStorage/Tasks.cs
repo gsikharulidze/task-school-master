@@ -77,7 +77,7 @@ namespace TodoInFileStorage
         }
         public static void Active(string id)
         {
-             var tasks = List().ToList();
+            var tasks = List().ToList();
             var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
             if (task == null)
             {
@@ -107,5 +107,25 @@ namespace TodoInFileStorage
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
 
         }
+        public static void AllComplete()
+        {
+            var tasks = List().ToList();
+            foreach (var task in tasks)
+            {
+                task.Completed = true;
+            }
+            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+        }
+        public static void AllActive()
+        {
+            var tasks = List().ToList();
+            foreach (var task in tasks)
+            {
+                task.Completed = false;
+            }
+            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+        }
+
+
     }
 }
