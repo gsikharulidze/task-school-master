@@ -55,7 +55,7 @@ namespace TodoInFileStorage
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine();
-                Console.WriteLine("command not recognized, please use 'help' command and see all avaliable commands");
+                Console.WriteLine("command not recognized. \n\nplease use 'help' command and see all avaliable command");
             }
         }
     }
