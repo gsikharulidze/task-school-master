@@ -12,7 +12,7 @@ namespace TodoInFileStorage
             {
                 Console.WriteLine(task);
             }
-            Tasks.Lists();
+            Tasks.ActiveTasks();
         }
     }
 }

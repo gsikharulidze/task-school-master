@@ -1,10 +1,16 @@
-﻿namespace TodoInFileStorage
+﻿using System;
+
+namespace TodoInFileStorage
 {
      class ListCompleteCommandProcessor : CommandProcessor
     {
         public override void Process()
         {
-           // throw new System.NotImplementedException();
+            Console.WriteLine();
+            Console.WriteLine("id\tname\tCompleted");
+            Console.WriteLine("==============================");
+            Tasks.ListComplete();
+            Tasks.ActiveTasks();
         }
     }
 }

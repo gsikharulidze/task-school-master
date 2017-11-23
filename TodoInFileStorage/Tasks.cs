@@ -17,14 +17,7 @@ namespace TodoInFileStorage
 
             return new List<Task>();
         }
-
-        public static void Lists()
-        {
-            var tasks = List().ToList();
-            var activetask = tasks.Where(x => x.Completed == false).Count();
-            Console.WriteLine();
-            Console.WriteLine("{0} Items Left", activetask);
-        }
+        
         public static void Create(Task task)
         {
             var tasks = List().ToList();
@@ -125,7 +118,44 @@ namespace TodoInFileStorage
             }
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
+        public static void ListActive()
+        {
+            var tasks = List().ToList();
+            var allactive = tasks.Where(x => x.Completed == false);
+            if (allactive.Count() == 0)
+            {
+                Console.WriteLine("active task not found");
+                return;
+            }
+            foreach (var task in allactive)
+            {
+                Console.WriteLine(task);
+            }
+        }
 
+        public static void ListComplete()
+        {
+            var tasks = List().ToList();
+            var allcomplete = tasks.Where(x => x.Completed == true);
+
+            if (allcomplete.Count() == 0)
+            {
+                Console.WriteLine("complete task not found");
+                return;
+            }
+            foreach (var task in allcomplete)
+            {
+                Console.WriteLine(task);
+            }
+            
+        }
+        public static void ActiveTasks()
+        {
+            var tasks = List().ToList();
+            var activetask = tasks.Where(x => x.Completed == false).Count();
+            Console.WriteLine();
+            Console.WriteLine("{0} active items Left", activetask);
+        }
 
     }
 }
