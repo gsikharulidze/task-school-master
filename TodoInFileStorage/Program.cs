@@ -24,7 +24,7 @@ namespace TodoInFileStorage
 
         static void Main(string[] args)
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Color.DarkBlue();
             Console.Clear();
             var command = WaitForNextCommand();
             while (command != "exit")
@@ -37,7 +37,7 @@ namespace TodoInFileStorage
 
         private static string WaitForNextCommand()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Color.Yellow();
             Console.WriteLine();
             Console.WriteLine("------------------------------");
             Console.Write("> ");
@@ -48,12 +48,12 @@ namespace TodoInFileStorage
         {
             if (commands.ContainsKey(command))
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Color.Green();
                 commands[command].Process();
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Color.Red();
                 Console.WriteLine();
                 Console.WriteLine("command not recognized. \n\nplease use 'help' command and see all avaliable command");
             }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace TodoInFileStorage
 {
-    static class Tasks
+    static partial class Tasks
     {
         public static IEnumerable<Task> List()
         {
@@ -166,6 +166,7 @@ namespace TodoInFileStorage
             }
 
         }
+
 
     }
 }

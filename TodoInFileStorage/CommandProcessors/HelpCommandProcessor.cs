@@ -8,11 +8,11 @@ namespace TodoInFileStorage
         {
             Console.WriteLine("Collor guide:");
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Color.Yellow();
             Console.WriteLine("Yellow:\t- Command");
-            Console.ForegroundColor = ConsoleColor.Red;
+            Color.Red();
             Console.WriteLine("Red:\t- Error ");
-            Console.ForegroundColor = ConsoleColor.Green;
+            Color.Green();
             Console.WriteLine("Green:\t- Result (After success command)");
             Console.WriteLine();
             Console.WriteLine("avaliable commands");

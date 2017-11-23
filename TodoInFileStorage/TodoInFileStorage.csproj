@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color.cs" />
     <Compile Include="CommandProcessors\ClearCommandProcessor.cs" />
     <Compile Include="CommandProcessors\AllActiveCommandProcessor.cs" />
     <Compile Include="CommandProcessors\AllCompleteCommandProcessor.cs" />
