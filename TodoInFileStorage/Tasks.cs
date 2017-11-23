@@ -157,5 +157,15 @@ namespace TodoInFileStorage
             Console.WriteLine("{0} active items Left", activetask);
         }
 
+        public static void Help()
+        {
+            var comandtypes = Program.commands.ToList();
+            foreach (var type in comandtypes.OrderBy(x => x.Key))
+            {
+                Console.WriteLine(type.Key);
+            }
+
+        }
+
     }
 }

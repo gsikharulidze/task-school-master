@@ -5,7 +5,7 @@ namespace TodoInFileStorage
 {
     class Program
     {
-        static IDictionary<string, CommandProcessor> commands = new Dictionary<string, CommandProcessor>
+        public static IDictionary<string, CommandProcessor> commands = new Dictionary<string, CommandProcessor>
         {
             { "list", new ListCommandProcessor() },
             { "create", new CreateCommandProcessor() },
