@@ -9,7 +9,7 @@ namespace TodoInFileStorage
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("avaliable commands");
-            Console.WriteLine("------------------------------");
+            Console.WriteLine("==============================");
             Tasks.Help();
             Console.WriteLine();
 

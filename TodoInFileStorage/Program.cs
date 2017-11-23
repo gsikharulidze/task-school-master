@@ -19,12 +19,13 @@ namespace TodoInFileStorage
             { "listactive", new ListActiveCommandProcessor() },
             { "listcomplete", new ListCompleteCommandProcessor() },
             { "help", new HelpCommandProcessor() },
-
+            { "clear", new ClearCommandProcessor() },
         };
-
 
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.Clear();
             var command = WaitForNextCommand();
             while (command != "exit")
             {
@@ -36,7 +37,7 @@ namespace TodoInFileStorage
 
         private static string WaitForNextCommand()
         {
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.WriteLine("------------------------------");
             Console.Write("> ");
@@ -46,9 +47,16 @@ namespace TodoInFileStorage
         private static void ProcessCommand(string command)
         {
             if (commands.ContainsKey(command))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
                 commands[command].Process();
+            }
             else
-                Console.WriteLine("command not recognized");
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine();
+                Console.WriteLine("command not recognized, please use 'help' command and see avaliable commands");
+            }
         }
     }
 }
