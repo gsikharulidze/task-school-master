@@ -4,8 +4,8 @@
     {
         public override void Process()
         {
-            
-            Tasks.AllComplete();
+
+            Program.Logics.AllComplete();
         }
     }
 }

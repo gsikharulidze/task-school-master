@@ -8,11 +8,11 @@ namespace TodoInFileStorage
         {
             Console.WriteLine("id\tname\tCompleted");
             Console.WriteLine("==============================");
-            foreach (var task in Tasks.List())
+            foreach (var task in Program.Logics.List())
             {
                 Console.WriteLine(task);
             }
-            Tasks.ActiveTasks();
+            Program.Logics.ActiveTasks();
         }
     }
 }

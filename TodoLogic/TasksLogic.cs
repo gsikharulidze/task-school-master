@@ -3,22 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace TodoInFileStorage
+namespace TodoLogic
 {
-    static partial class Tasks
+    public class TasksLogic
     {
-        public static IEnumerable<Task> List()
+        private readonly string dataFilePath;
+
+        public TasksLogic(string dataFilePath)
         {
-            if (File.Exists("data.json"))
+            this.dataFilePath = dataFilePath;
+        }
+        public  IEnumerable<Task> List()
+        {
+            if (File.Exists(dataFilePath))
             {
-                return JsonConvert.DeserializeObject<List<Task>>(File.ReadAllText("data.json"));
+                return JsonConvert.DeserializeObject<List<Task>>(File.ReadAllText(dataFilePath));
             }
 
             return new List<Task>();
         }
-        
-        public static void Create(Task task)
+
+        public  void Create(Task task)
         {
             var tasks = List().ToList();
             task.Id = tasks.Select(x => x.Id).DefaultIfEmpty(0).Max() + 1;
@@ -26,20 +33,15 @@ namespace TodoInFileStorage
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
 
-        public static void Delete(string id)
+        public  void Delete(string id)
         {
             var tasks = List().ToList();
             var task = tasks.First(x => x.Id.ToString() == id);
             tasks.Remove(task);
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        //public static void CheeckTask(string id)
-        //{
-        //    var tasks = List().ToList();
-        //    var task = tasks.First(x => x.Id.ToString() == id);
-
-        //}
-        public static void Rename(string id, string name)
+      
+        public  void Rename(string id, string name)
         {
             var tasks = List().ToList();
             var task = tasks.First(x => x.Id.ToString() == id);
@@ -51,7 +53,7 @@ namespace TodoInFileStorage
             task.Name = name;
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        public static void Complete(string id)
+        public  void Complete(string id)
         {
             var tasks = List().ToList();
             var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
@@ -68,7 +70,7 @@ namespace TodoInFileStorage
             task.Completed = true;
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        public static void Active(string id)
+        public  void Active(string id)
         {
             var tasks = List().ToList();
             var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
@@ -86,7 +88,7 @@ namespace TodoInFileStorage
             task.Completed = false;
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        public static void DeleceComplete()
+        public  void DeleceComplete()
         {
             var tasks = List().ToList();
             var count = tasks.Where(x => x.Completed == true).Count();
@@ -100,7 +102,7 @@ namespace TodoInFileStorage
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
 
         }
-        public static void AllComplete()
+        public  void AllComplete()
         {
             var tasks = List().ToList();
             foreach (var task in tasks)
@@ -109,7 +111,7 @@ namespace TodoInFileStorage
             }
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        public static void AllActive()
+        public  void AllActive()
         {
             var tasks = List().ToList();
             foreach (var task in tasks)
@@ -118,7 +120,7 @@ namespace TodoInFileStorage
             }
             File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
         }
-        public static void ListActive()
+        public  void ListActive()
         {
             var tasks = List().ToList();
             var allactive = tasks.Where(x => x.Completed == false);
@@ -133,7 +135,7 @@ namespace TodoInFileStorage
             }
         }
 
-        public static void ListComplete()
+        public  void ListComplete()
         {
             var tasks = List().ToList();
             var allcomplete = tasks.Where(x => x.Completed == true);
@@ -147,9 +149,9 @@ namespace TodoInFileStorage
             {
                 Console.WriteLine(task);
             }
-            
+
         }
-        public static void ActiveTasks()
+        public  void ActiveTasks()
         {
             var tasks = List().ToList();
             var activetask = tasks.Where(x => x.Completed == false).Count();
@@ -157,16 +159,15 @@ namespace TodoInFileStorage
             Console.WriteLine("{0} active items Left", activetask);
         }
 
-        public static void Help()
+        public  void Help()
         {
-            var comandtypes = Program.commands.ToList();
-            foreach (var type in comandtypes.OrderBy(x => x.Key))
-            {
-                Console.WriteLine(type.Key);
-            }
+            //var comandtypes = Program.commands.ToList();
+            //foreach (var type in comandtypes.OrderBy(x => x.Key))
+            //{
+            //    Console.WriteLine(type.Key);
+            //}
 
         }
-
 
     }
 }

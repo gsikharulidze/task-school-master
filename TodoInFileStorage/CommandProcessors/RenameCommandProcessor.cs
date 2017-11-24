@@ -17,7 +17,7 @@ namespace TodoInFileStorage
 
             Console.Write("new name: ");
             var name = Console.ReadLine();
-            Tasks.Rename(id,name);
+            Program.Logics.Rename(id,name);
         }
     }
 }

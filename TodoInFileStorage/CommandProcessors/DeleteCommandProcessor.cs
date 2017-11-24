@@ -8,7 +8,7 @@ namespace TodoInFileStorage
         {
             Console.Write("id: ");
             var id = Console.ReadLine();
-            Tasks.Delete(id);
+            Program.Logics.Delete(id);
         }
     }
 }

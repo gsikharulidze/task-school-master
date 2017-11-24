@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace TodoInFileStorage
 {
     class ActiveCommandProcessor : CommandProcessor
@@ -8,7 +9,7 @@ namespace TodoInFileStorage
         {
             Console.Write("id: ");
             var id = Console.ReadLine();
-            Tasks.Active(id);
+            Program.Logics.Active(id);
         }
     }
 }

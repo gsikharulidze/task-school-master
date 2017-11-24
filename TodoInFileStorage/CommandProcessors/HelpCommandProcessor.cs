@@ -17,7 +17,7 @@ namespace TodoInFileStorage
             Console.WriteLine();
             Console.WriteLine("avaliable commands");
             Console.WriteLine("------------------------------");
-            Tasks.Help();
+            Program.Logics.Help();
 
         }
     }

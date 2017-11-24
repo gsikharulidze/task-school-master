@@ -1,4 +1,5 @@
 ﻿using System;
+using TodoLogic;
 
 namespace TodoInFileStorage
 {
@@ -8,7 +9,7 @@ namespace TodoInFileStorage
         {
             Console.Write("name: ");
             var name = Console.ReadLine();
-            Tasks.Create(new Task { Name = name,Completed=false });
+            Program.Logics.Create(new Task { Name = name,Completed=false });
         }
     }
 }

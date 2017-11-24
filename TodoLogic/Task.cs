@@ -1,4 +1,4 @@
-﻿namespace TodoInFileStorage
+﻿namespace TodoLogic
 {
     public class Task
     {

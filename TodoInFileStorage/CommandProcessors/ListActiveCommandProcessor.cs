@@ -9,8 +9,8 @@ namespace TodoInFileStorage
             Console.WriteLine();
             Console.WriteLine("id\tname\tCompleted");
             Console.WriteLine("==============================");
-            Tasks.ListActive();
-            Tasks.ActiveTasks();
+            Program.Logics.ListActive();
+            Program.Logics.ActiveTasks();
         }
     }
 }

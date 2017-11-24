@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using TodoLogic;
 
 namespace TodoInFileStorage
 {
     class Program
     {
-        public static IDictionary<string, CommandProcessor> commands = new Dictionary<string, CommandProcessor>
+        public static TasksLogic Logics = new TasksLogic(@"C:\Users\m.skhirtladze\Desktop\task-school\data.json");
+
+        static  IDictionary<string, CommandProcessor> commands = new Dictionary<string, CommandProcessor>
         {
             { "list", new ListCommandProcessor() },
             { "create", new CreateCommandProcessor() },
