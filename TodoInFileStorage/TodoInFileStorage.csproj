@@ -74,6 +74,7 @@
     <Compile Include="CommandProcessors\HelpCommandProcessor.cs" />
     <Compile Include="CommandProcessors\ListActiveCommandProcessor.cs" />
     <Compile Include="CommandProcessors\ListCompleteCommandProcessor.cs" />
+    <Compile Include="CommandProcessors\ExitCommandProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandProcessors\RenameCommandProcessor.cs" />

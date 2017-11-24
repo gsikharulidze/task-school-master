@@ -20,6 +20,7 @@ namespace TodoInFileStorage
             { "listcomplete", new ListCompleteCommandProcessor() },
             { "help", new HelpCommandProcessor() },
             { "clear", new ClearCommandProcessor() },
+            { "exit", new ExitCommandProcessor() },
         };
 
         static void Main(string[] args)
@@ -55,7 +56,7 @@ namespace TodoInFileStorage
             {
                 Color.Red();
                 Console.WriteLine();
-                Console.WriteLine("command not recognized. \n\nplease use 'help' command and see all avaliable command");
+                Console.WriteLine("command '{0}' not recognized. \n\nplease use 'help' command and see all avaliable command",command);
             }
         }
     }
