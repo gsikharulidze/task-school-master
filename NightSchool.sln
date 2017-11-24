@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoInFileStorage", "TodoIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoLogic", "TodoLogic\TodoLogic.csproj", "{C043F7FC-B1FE-40CE-87BD-622413785EF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoWinForms", "TodoWinForms\TodoWinForms.csproj", "{850156AD-0216-4E87-8FEE-E0FCD45EDB4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C043F7FC-B1FE-40CE-87BD-622413785EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C043F7FC-B1FE-40CE-87BD-622413785EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C043F7FC-B1FE-40CE-87BD-622413785EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850156AD-0216-4E87-8FEE-E0FCD45EDB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850156AD-0216-4E87-8FEE-E0FCD45EDB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850156AD-0216-4E87-8FEE-E0FCD45EDB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850156AD-0216-4E87-8FEE-E0FCD45EDB4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

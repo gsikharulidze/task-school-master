@@ -53,6 +53,19 @@ namespace TodoLogic
             task.Name = name;
             File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
+        public void Edit(string id, string name, string completed)
+        {
+            var tasks = List().ToList();
+            var task = tasks.First(x => x.Id.ToString() == id);
+            if (task == null)
+            {
+                Console.WriteLine("task not found");
+                return;
+            }
+            task.Name = name;
+            task.Completed =Convert.ToBoolean(completed);
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
+        }
         public  void Complete(string id)
         {
             var tasks = List().ToList();
