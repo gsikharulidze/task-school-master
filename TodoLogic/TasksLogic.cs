@@ -30,7 +30,7 @@ namespace TodoLogic
             var tasks = List().ToList();
             task.Id = tasks.Select(x => x.Id).DefaultIfEmpty(0).Max() + 1;
             tasks.Add(task);
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
 
         public  void Delete(string id)
@@ -38,7 +38,7 @@ namespace TodoLogic
             var tasks = List().ToList();
             var task = tasks.First(x => x.Id.ToString() == id);
             tasks.Remove(task);
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
       
         public  void Rename(string id, string name)
@@ -51,7 +51,7 @@ namespace TodoLogic
                 return;
             }
             task.Name = name;
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public  void Complete(string id)
         {
@@ -68,7 +68,7 @@ namespace TodoLogic
                 return;
             }
             task.Completed = true;
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public  void Active(string id)
         {
@@ -86,7 +86,7 @@ namespace TodoLogic
                 return;
             }
             task.Completed = false;
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public  void DeleceComplete()
         {
@@ -99,7 +99,7 @@ namespace TodoLogic
             }
             tasks.RemoveAll(x => x.Completed == true);
             Console.WriteLine("Delete {0} items", count);
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
 
         }
         public  void AllComplete()
@@ -109,7 +109,7 @@ namespace TodoLogic
             {
                 task.Completed = true;
             }
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public  void AllActive()
         {
@@ -118,7 +118,7 @@ namespace TodoLogic
             {
                 task.Completed = false;
             }
-            File.WriteAllText("data.json", JsonConvert.SerializeObject(tasks));
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public  void ListActive()
         {
