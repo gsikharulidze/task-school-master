@@ -47,7 +47,7 @@ namespace TodoLogic
         {
             var Query =
             from t in db.Tasks
-            where t.Completed==true
+            where t.Completed == true
             select t;
             List<Tasks> qList = Query.ToList();
             return qList;
@@ -177,7 +177,6 @@ namespace TodoLogic
             foreach (var task in tasks)
             {
                 task.Completed = true;
-                //OnChange(task, db);
             }
             db.SaveChanges();
         }
@@ -193,7 +192,6 @@ namespace TodoLogic
             foreach (var task in tasks)
             {
                 task.Completed = false;
-                //OnChange(task, db);
             }
             db.SaveChanges();
         }

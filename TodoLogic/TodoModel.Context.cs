@@ -26,6 +26,8 @@ namespace TodoLogic
         }
     
         public virtual DbSet<Tasks> Tasks { get; set; }
+
         
+
     }
 }
