@@ -11,7 +11,7 @@ namespace TodoWinForms
         {
             InitializeComponent();
 
-            logics = new TasksLogic(@"C:\Users\GSIKHARULIDZE9\Downloads\task-school-master\data.json");
+            logics = new TasksLogic(@"C:\Users\GSIKHARULIDZE9\Desktop\task-school-master\data.json");
             dataGridView1.DataSource = logics.List();
             dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
         }
