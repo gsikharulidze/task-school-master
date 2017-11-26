@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TodoWinForms.Properties {
+namespace TodoLogic.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,9 @@ namespace TodoWinForms.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=gsikharulidze;Initial Catalog=TodoDatabase;Integrated Security=True")]
-        public string TodoDatabaseConnectionString {
+        public string TodoDb {
             get {
-                return ((string)(this["TodoDatabaseConnectionString"]));
+                return ((string)(this["TodoDb"]));
             }
         }
     }
