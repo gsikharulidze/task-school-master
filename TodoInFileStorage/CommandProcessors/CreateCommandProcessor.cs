@@ -9,7 +9,7 @@ namespace TodoInFileStorage
         {
             Console.Write("name: ");
             var name = Console.ReadLine();
-          //  Program.Logics.Create(new Task { Name = name,Completed=false });
+            Program.Logics.Create(new Task { Name = name,Completed=false });
         }
     }
 }
