@@ -1,18 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace TodoLogic
 {
-    public class MySqlCommand
-
+    public class TasksLogic
     {
-<<<<<<< HEAD
         private readonly string dataFilePath;
         TodoDatabaseEntities db = new TodoDatabaseEntities();
         Tasks TasksTable = new Tasks();
@@ -36,41 +32,6 @@ namespace TodoLogic
             //}
 
             //return new List<Tasks>();
-=======
-        private readonly string commandText;
-
-        public MySqlCommand(string commandText)
-
-        {
-            this.commandText = commandText;
-        }
-
-
-        public List<TEntity> Query<TEntity>(Func<SqlDataReader, TEntity> logic)
-
-        {
-            var entities = new List<TEntity>();
-
-
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-
-            using (var command = new SqlCommand(commandText, connection))
-
-            {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                var reader = command.ExecuteReader();
-
-
-                while (reader.Read())
-                {
-                    entities.Add(logic(reader));
-
-                }
-            }
-
-            return entities;
->>>>>>> Connect Db
         }
         public IEnumerable<Tasks> ListActiveTasks()
         {
@@ -81,7 +42,6 @@ namespace TodoLogic
             List<Tasks> qList = Query.ToList();
             return qList;
 
-<<<<<<< HEAD
         }
         public IEnumerable<Tasks> ListCompletedTasks()
         {
@@ -125,26 +85,19 @@ namespace TodoLogic
         }
 
         public void Rename(string id, string name)
-=======
-        public void NonQuery()
-
->>>>>>> Connect Db
         {
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-            using (var command = new SqlCommand(commandText, connection))
+            var tasks = List().ToList();
+            var task = tasks.First(x => x.Id.ToString() == id);
+            if (task == null)
             {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                command.ExecuteNonQuery();
+                Console.WriteLine("task not found");
+                return;
             }
+            task.Name = name;
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
-    }
-
-    public class TasksLogic
-    {   
-        public IEnumerable<Task> List()
+        public void Edit(string id, string name, string completed)
         {
-<<<<<<< HEAD
 
             var tasks = db.Tasks.First(x => x.Id.ToString() == id);
             tasks.Name = name;
@@ -162,58 +115,41 @@ namespace TodoLogic
             //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
         public void Complete(string id)
-=======
-            return new MySqlCommand("SelectTasks").Query(reader => new Task
-            {
-                Id = Convert.ToInt32(reader["Id"]),
-                Name = reader["Name"].ToString(),
-                Completed = Convert.ToBoolean(reader["Completed"])
-            });
-        }
-
-        public void Create(Task task)
->>>>>>> Connect Db
         {
-            //new MySqlCommand("UpdateTasks").NonQuery();
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-            using (var command = new SqlCommand("CreateTasks", connection))
+            var tasks = List().ToList();
+            var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
+            if (task == null)
             {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(
-                new SqlParameter("@Name", task.Name));
-                command.ExecuteNonQuery();
+                Console.WriteLine("task not found");
+                return;
             }
-<<<<<<< HEAD
+            if (task.Completed)
+            {
+                Console.WriteLine("already complete");
+                return;
+            }
             task.Completed = true;
             //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
 
         }
         public void Active(string id)
-=======
-        }
-        
-        public void Rename(string id, string name,string completed)
->>>>>>> Connect Db
         {
-            //new MySqlCommand($"update Tasks set Name = '{ name }' ,Completed={Convert.ToInt32(Convert.ToBoolean(completed))} where Id = {id}").NonQuery();
-
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-            using (var command = new SqlCommand("UpdateTasks", connection))
+            var tasks = List().ToList();
+            var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
+            if (task == null)
             {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(
-                new SqlParameter("@Id", Convert.ToInt32(id)));
-                command.Parameters.Add(
-                new SqlParameter("@Name", name));
-                command.Parameters.Add(
-                new SqlParameter("@Completed", Convert.ToInt32(Convert.ToBoolean(completed))));
-                command.ExecuteNonQuery();
+                Console.WriteLine("task not found");
+                return;
             }
 
+            if (!task.Completed)
+            {
+                Console.WriteLine("already active");
+                return;
+            }
+            task.Completed = false;
+            File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
         }
-<<<<<<< HEAD
         public void DeleceComplete()
         {
             //var tasks = List().ToList();
@@ -226,75 +162,15 @@ namespace TodoLogic
             //tasks.RemoveAll(x => x.Completed == true);
             //Console.WriteLine("Delete {0} items", count);
             //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
-=======
 
-        public void Delete(string id)
-        {
-            //new MySqlCommand($"delete from Tasks where Id = {id}").NonQuery();
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
-            using (var command = new SqlCommand("DeleteTask", connection))
-            {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(
-                new SqlParameter("@Id", Convert.ToInt32(id)));
-                command.ExecuteNonQuery();
-            }
-        }
->>>>>>> Connect Db
-
-        
-        //public  void Complete(string id)
-        //{
-        //    var tasks = List().ToList();
-        //    var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
-        //    if (task == null)
-        //    {
-        //        Console.WriteLine("task not found");
-        //        return;
-        //    }
-        //    if (task.Completed)
-        //    {
-        //        Console.WriteLine("already complete");
-        //        return;
-        //    }
-        //    task.Completed = true;
-        //   // File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
-        //}
-        //public  void Active(string id)
-        //{
-        //    var tasks = List().ToList();
-        //    var task = tasks.FirstOrDefault(x => x.Id.ToString() == id);
-        //    if (task == null)
-        //    {
-        //        Console.WriteLine("task not found");
-        //        return;
-        //    }
-
-        //    if (!task.Completed)
-        //    {
-        //        Console.WriteLine("already active");
-        //        return;
-        //    }
-        //    task.Completed = false;
-        //   // File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
-        //}
-        public  void DeleceComplete()
-        {
-            new MySqlCommand("DeleteCompletedTask").NonQuery();
         }
         public void AllComplete()
         {
-<<<<<<< HEAD
-=======
-            new MySqlCommand("AllComplete").NonQuery();
->>>>>>> Connect Db
             //var tasks = List().ToList();
             //foreach (var task in tasks)
             //{
             //    task.Completed = true;
             //}
-<<<<<<< HEAD
 
             //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
             var tasks = db.Tasks;
@@ -303,22 +179,14 @@ namespace TodoLogic
                 task.Completed = true;
             }
             db.SaveChanges();
-=======
-            //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
->>>>>>> Connect Db
         }
         public void AllActive()
         {
-<<<<<<< HEAD
-=======
-            new MySqlCommand("AllActive").NonQuery();
->>>>>>> Connect Db
             //var tasks = List().ToList();
             //foreach (var task in tasks)
             //{
             //    task.Completed = false;
             //}
-<<<<<<< HEAD
             //File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
             var tasks = db.Tasks;
             foreach (var task in tasks)
@@ -328,49 +196,35 @@ namespace TodoLogic
             db.SaveChanges();
         }
         public void ListActive()
-=======
-            // File.WriteAllText(dataFilePath, JsonConvert.SerializeObject(tasks));
-        }
-        public IEnumerable<Task> ListActive()
->>>>>>> Connect Db
         {
-            return new MySqlCommand("ListActive").Query(reader => new Task
+            var tasks = List().ToList();
+            var allactive = tasks.Where(x => x.Completed == false);
+            if (allactive.Count() == 0)
             {
-                Id = Convert.ToInt32(reader["Id"]),
-                Name = reader["Name"].ToString(),
-                Completed = Convert.ToBoolean(reader["Completed"])
-            });
+                Console.WriteLine("active task not found");
+                return;
+            }
+            foreach (var task in allactive)
+            {
+                Console.WriteLine(task);
+            }
         }
 
-        public IEnumerable<Task> ListCompleted()
-        {
-            return new MySqlCommand("ListComplete").Query(reader => new Task
-            {
-                Id = Convert.ToInt32(reader["Id"]),
-                Name = reader["Name"].ToString(),
-                Completed = Convert.ToBoolean(reader["Completed"])
-            });
-        }
-
-<<<<<<< HEAD
         public void ListComplete()
-=======
-        public  int  ActiveTasks(int count)
->>>>>>> Connect Db
         {
-            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TasksDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            var tasks = List().ToList();
+            var allcomplete = tasks.Where(x => x.Completed == true);
 
-            using (var command = new SqlCommand("ActiveTasks", connection))
-
+            if (allcomplete.Count() == 0)
             {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    count = Convert.ToInt32(reader["Count"]);
+                Console.WriteLine("complete task not found");
+                return;
+            }
+            foreach (var task in allcomplete)
+            {
+                Console.WriteLine(task);
+            }
 
-<<<<<<< HEAD
         }
         public void ActiveTasks()
         {
@@ -378,16 +232,6 @@ namespace TodoLogic
             var activetask = tasks.Where(x => x.Completed == false).Count();
             Console.WriteLine();
             Console.WriteLine("{0} active items Left", activetask);
-=======
-                }
-                return count;
-            }
-           
-            //var tasks = List().ToList();
-            //var activetask = tasks.Where(x => x.Completed == false).Count();
-            //Console.WriteLine();
-            //Console.WriteLine("{0} active items Left", activetask);
->>>>>>> Connect Db
         }
 
         public int ActiveTask(int count)
@@ -414,6 +258,3 @@ namespace TodoLogic
     }
 
 }
-
-
-

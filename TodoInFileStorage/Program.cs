@@ -6,7 +6,7 @@ namespace TodoInFileStorage
 {
     class Program
     {
-        public static TasksLogic Logics = new TasksLogic();
+        public static TasksLogic Logics = new TasksLogic(@"C:\Users\GSIKHARULIDZE9\Desktop\task-school-master\data.json");
 
         static  IDictionary<string, CommandProcessor> commands = new Dictionary<string, CommandProcessor>
         {
